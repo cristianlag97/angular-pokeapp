@@ -1,0 +1,13 @@
+<form (submit)="login()" [formGroup]="loginFormGroup">
+  <input type="email" name="email" placeholder="Email" formControlName="email" required >
+  @if (email.invalid && email.touched) {
+    <p>El correo es requerido</p>
+  }
+  <input type="password" name="password" placeholder="Contraseña" formControlName="password" required>
+  @if (password.hasError('required') && password.touched) {
+    <p>La contraseña es requerida</p>
+  } @else if(password.hasError('minlength') && password.touched) {
+    <p>La contraseña debe tener al menos 6 caracteres</p>
+  }
+  <button type="submit">Iniciar sesión</button>
+</form>
