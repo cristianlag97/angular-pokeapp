@@ -6,6 +6,7 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { AuthGuard } from './features/auth/data/guards/auth.guard';
 import { PokemonsComponent } from './features/home/presentation/pages/pokemons/pokemons.component';
 import { PokemonDetailComponent } from './features/home/presentation/pages/pokemon-detail/pokemon-detail.component';
+import { FavoritesPageComponent } from './features/favorites/presentation/pages/favorites-page/favorites-page.component';
 
 export const routes: Routes = [
   {
@@ -13,8 +14,9 @@ export const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
     children: [
+      {path: 'favorites', component: FavoritesPageComponent},
       {path: '', component: PokemonsComponent},
-      {path: ':id', component: PokemonDetailComponent}
+      {path: ':id', component: PokemonDetailComponent},
     ]
   },
   {

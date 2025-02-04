@@ -1,0 +1,40 @@
+.spacer{
+  margin-top: 20px;
+}
+
+.pokemon-container {
+
+  display: grid;  /* Usa grid en lugar de flex */
+  grid-template-columns: repeat(5, 1fr);  /* 5 columnas en pantallas grandes */
+  gap: 16px;  /* Espacio entre las tarjetas */
+  max-width: 1200px;  /* Limita el ancho máximo del contenedor */
+  margin: auto;  /* Centra el contenedor en la página */
+  padding: 0 16px;  /* Agrega algo de padding para evitar que las tarjetas toquen los bordes */
+  justify-items: center;  /* Centra las tarjetas horizontalmente */
+  align-items: center;  /* Centra las tarjetas verticalmente */
+
+}
+
+
+
+app-pokemon-card {
+  box-sizing: border-box;  /* Asegura que el padding no afecte el tamaño de la tarjeta */
+}
+
+@media (max-width: 1200px) {
+  .pokemon-container {
+    grid-template-columns: repeat(3, 1fr);  /* 3 columnas en pantallas medianas (tabletas) */
+  }
+}
+
+@media (max-width: 768px) {
+  .pokemon-container {
+    grid-template-columns: repeat(2, 1fr);  /* 2 columnas en pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-container {
+    grid-template-columns: 1fr;  /* 1 columna en pantallas muy pequeñas (móviles) */
+  }
+}

@@ -1,1 +1,13 @@
-<p>pokemon-detail works!</p>
+<div class="pokemon-details-container">
+  <div class="pokemon-header">
+    <img [src]="imageUrl" alt="Pokemon Image" class="pokemon-image" />
+    <h1 class="pokemon-name">{{ pokemonDetails?.name }}</h1>
+  </div>
+  <div class="pokemon-info">
+    <p><strong>Tipo(s):</strong> {{ pokemonTypes }}</p>
+    <p><strong>ID:</strong> {{ pokemonDetails?.id }}</p>
+    <p><strong>Altura:</strong> {{ pokemonDetails?.height }}m</p>
+    <p><strong>Peso:</strong> {{ pokemonDetails?.weight }}kg</p>
+
+  </div>
+</div>
