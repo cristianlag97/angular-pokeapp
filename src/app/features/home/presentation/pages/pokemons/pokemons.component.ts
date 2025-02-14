@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { PokemonCardComponent } from '../../components/pokemon-card/pokemon-card.component';
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { Router } from '@angular/router';
+import { environment } from '../../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-pokemons',
@@ -13,17 +14,14 @@ import { Router } from '@angular/router';
   styleUrl: './pokemons.component.css',
 })
 export class PokemonsComponent implements OnInit {
-  pokemons: any[];
-  limit: number;
-  offset: number;
-  isLoading: boolean;
 
-  constructor(public pokemonService: PokemonService, private router: Router) {
-    this.pokemons = [];
-    this.limit = 50;
-    this.offset = 0;
-    this.isLoading = false;
-  }
+  limit: number = 50;
+  offset: number = 0;
+  isLoading: boolean = false;
+
+  imageUrl: String = environment.imageUrl;
+
+  constructor(public pokemonService: PokemonService, private router: Router) {}
 
   ngOnInit(): void {
     this.getPokemons();
@@ -42,8 +40,7 @@ export class PokemonsComponent implements OnInit {
 
         forkJoin(requests).subscribe({
           next: (pokemonDetails) => {
-            this.pokemons = [...this.pokemons, ...pokemonDetails];
-            this.pokemonService.pokemons = this.pokemons;
+            this.pokemonService.pokemons = [...this.pokemonService.pokemons, ...pokemonDetails];
             this.offset += this.limit;
             this.isLoading = false;
           },
@@ -69,6 +66,6 @@ export class PokemonsComponent implements OnInit {
   }
 
   onCardClick(pokemonId: number) {
-    this.router.navigate(['/', pokemonId]);
+    this.router.navigate(['/pokemon/', pokemonId]);
   }
 }

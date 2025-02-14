@@ -15,9 +15,6 @@ export class AuthService {
   public msg: string = '';
 
   public isAuthenticated: boolean = false;
-  private authToken: String | null = null;
-  // private redirectUrl: String | null = null;
-  // private siteKey: String = '';
 
   private readonly TOKEN_KEY = 'token_Data';
   private readonly USER_DATA_KEY = 'USER_Data';
@@ -64,9 +61,9 @@ export class AuthService {
         email: user.email,
         token: user.accessToken,
       };
-      this.authToken = user.accessToken;
-      this.localStorage.setStorageItem(this.TOKEN_KEY, user.accessToken);
-      this.localStorage.setStorageItem(this.USER_DATA_KEY, JSON.stringify(data));
+
+      this.localStorage.setStorageSession(this.TOKEN_KEY, user.accessToken);
+      this.localStorage.setStorageSession(this.USER_DATA_KEY, JSON.stringify(data));
       this.setSessionExpiry();
       this.isAuthenticated = true;
     }
@@ -79,8 +76,7 @@ export class AuthService {
 
   getToken(): string | null {
     return (
-      sessionStorage.getItem(this.TOKEN_KEY) ||
-      localStorage.getItem(this.TOKEN_KEY)
+      sessionStorage.getItem(this.TOKEN_KEY)
     );
   }
 
@@ -90,7 +86,6 @@ export class AuthService {
     sessionStorage.removeItem(this.SESSION_EXPIRY_KEY);
     this.localStorage.clearSessionStorage();
     this.isAuthenticated = false;
-    this.authToken = null;
     this.router.navigate(['/sign-in']);
   }
 }

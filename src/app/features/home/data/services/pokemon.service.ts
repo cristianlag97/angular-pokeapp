@@ -7,12 +7,10 @@ import { Pokemon } from '../models/Pokemon';
   providedIn: 'root',
 })
 export class PokemonService {
-  public pokemons: Pokemon[];
+  public pokemons: Pokemon[] = [];
   private readonly apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 
-  constructor(private http: HttpClient) {
-    this.pokemons = [];
-  }
+  constructor(private http: HttpClient) {}
 
   getPokemons(limit: number, offset: number) {
     return this.http.get<Pokemons>(this.apiUrl, {

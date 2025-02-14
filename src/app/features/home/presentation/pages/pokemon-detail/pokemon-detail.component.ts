@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from '../../../data/services/pokemon.service';
 import { Pokemon } from '../../../data/models/Pokemon';
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -11,19 +12,15 @@ import { Pokemon } from '../../../data/models/Pokemon';
 })
 export class PokemonDetailComponent implements OnInit {
 
-  pokemonId: number;
-  pokemonDetails: Pokemon | null;
-  imageUrl: String;
+  pokemonId: number = 0;
+  pokemonDetails: Pokemon | null = null;
+  imageUrl: String = '';
 
-  constructor(private route: ActivatedRoute, private pokemonService: PokemonService) {
-    this.pokemonId = 0;
-    this.imageUrl = '';
-    this.pokemonDetails = null
-  }
+  constructor(private route: ActivatedRoute, private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     this.pokemonId = +this.route.snapshot.paramMap.get('id')!;
-    this.imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.pokemonId}.png`
+    this.imageUrl = `${environment.imageUrl}${this.pokemonId}.png`
     this.getPokemonDetails();
     console.log(this.pokemonDetails)
   }

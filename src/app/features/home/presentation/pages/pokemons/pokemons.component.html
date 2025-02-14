@@ -5,7 +5,8 @@
   }
   @for (pokemon of pokemonService.pokemons; track $index) {
     <app-pokemon-card (click)="onCardClick(pokemon.id)" [name]="pokemon.name"
-      [imageUrl]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokemon.id + '.png'">
+      [imageUrl]="imageUrl.toString()+pokemon.id+'.png'">
+      <!-- [imageUrl]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokemon.id + '.png'"> -->
     </app-pokemon-card>
   }
 </div>

@@ -8,6 +8,9 @@ export class LocalstorageService {
 
   setStorageItem(key: string, value: string): void {
     localStorage.setItem(key, value);
+  }
+
+  setStorageSession(key: string, value: string): void {
     sessionStorage.setItem(key, value);
   }
 
